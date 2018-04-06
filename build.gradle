@@ -1,0 +1,26 @@
+apply plugin: 'java'
+apply plugin: 'jacoco'
+
+compileJava {
+    sourceCompatibility = 8
+    targetCompatibility = 8
+    options.encoding = 'UTF-8'
+    options.compilerArgs = [ '-Xlint:all', '-Werror' ]
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
+
+check.dependsOn jacocoTestReport
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
+
+repositories {
+    jcenter()
+}
